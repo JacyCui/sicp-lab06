@@ -1,3 +1,6 @@
+from re import I
+
+
 this_file = __file__
 
 
@@ -16,7 +19,12 @@ def make_adder_inc(a):
     >>> adder2(5)
     11
     """
-    "*** YOUR CODE HERE ***"
+    i = -1
+    def adder(b):
+        nonlocal i
+        i += 1
+        return a + b + i
+    return adder
 
 
 def make_fib():
@@ -42,7 +50,13 @@ def make_fib():
     >>> check(this_file, 'make_fib', ['List'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    cur, next = 0, 1
+    def fib():
+        nonlocal cur, next
+        pre, cur, next = cur, next, cur + next
+        return pre
+    return fib
+
 
 
 def insert_items(lst, entry, elem):
@@ -61,5 +75,12 @@ def insert_items(lst, entry, elem):
     >>> large_lst3 is large_lst
     True
     """
-    "*** YOUR CODE HERE ***"
+    i = 0
+    while i < len(lst):
+        if lst[i] == entry:
+            lst.insert(i + 1, elem)
+            i += 2
+        else:
+            i += 1
+    return lst
 
